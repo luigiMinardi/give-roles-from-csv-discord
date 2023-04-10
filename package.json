@@ -1,0 +1,29 @@
+{
+  "name": "give-roles-from-csv-discord",
+  "version": "0.0.0",
+  "description": "Discord bot to extract users from a server and save as csv and also to give roles based on csv analysis",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luigiMinardi/give-roles-from-csv-discord.git"
+  },
+  "keywords": [
+    "discord",
+    "discord-bot",
+    "discord-csv",
+    "discord-rolemanager"
+  ],
+  "author": "Luigi Minardi",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/luigiMinardi/give-roles-from-csv-discord/issues"
+  },
+  "homepage": "https://github.com/luigiMinardi/give-roles-from-csv-discord#readme",
+  "dependencies": {
+    "discord.js": "^14.9.0",
+    "dotenv": "^16.0.3"
+  }
+}
