@@ -7,7 +7,7 @@ const path = require('node:path');
 const { Client, Collection, Events, GatewayIntentBits } = require('discord.js');
 
 // Create a new client instance
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMembers] });
 
 // Commands configuration
 client.commands = new Collection();
@@ -28,8 +28,15 @@ for(const file of commandFiles) {
 
 // When the client is ready, run this code (only once)
 // We use 'c' for the event parameter to keep it separate from the already defined 'client'
-client.once(Events.ClientReady, c => {
+client.on(Events.ClientReady, async c => {
+	
+	await c.guilds.fetch().then( async (guilds) => {
+		for (const guild of guilds) {
+		await c.guilds.cache.get(guild[0]).members.fetch().then(console.log('members and guilds fetched')).catch(console.error)
+		} 
+	}).catch(console.error)
 	console.log(`Ready! Logged in as ${c.user.tag}`);
+
 });
 
 // Log in to Discord with your client's token
@@ -38,7 +45,6 @@ client.login(process.env.DISCORD_TOKEN).catch(err => console.log("Invalid token"
 // Listeners
 client.on(Events.InteractionCreate, async interaction => {
 	if(!interaction.isChatInputCommand()) return;
-	console.log(interaction);
 	const command = interaction.client.commands.get(interaction.commandName);
 
 	if(!command) {
@@ -57,3 +63,4 @@ client.on(Events.InteractionCreate, async interaction => {
 		}
 	}
 });
+
