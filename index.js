@@ -32,7 +32,7 @@ client.on(Events.ClientReady, async c => {
 	
 	await c.guilds.fetch().then( async (guilds) => {
 		for (const guild of guilds) {
-		await c.guilds.cache.get(guild[0]).members.fetch().then(console.log('members and guilds fetched')).catch(console.error)
+		await c.guilds.cache.get(guild[0]).members.fetch().then(console.log('members fetched')).catch(console.error)
 		} 
 	}).catch(console.error)
 	console.log(`Ready! Logged in as ${c.user.tag}`);
